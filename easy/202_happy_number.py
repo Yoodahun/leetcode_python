@@ -2,24 +2,34 @@
 #TODO : 아직못풀었음...
 class Solution:
     def isHappy(self, n: int) -> bool:
-        number_list = list(map(int, str(n)))
 
-        if len(number_list) == 1: return False
+       def get_next(n):
+           total_sum = 0
+           while n > 0:
+               #n을 10으로 계속해서 나누어 각 자리수를 분리시켜나감. 나머지 수는 다시 나누어 나감
+               n, digit = divmod(n, 10)
+               total_sum += digit ** 2
+           return total_sum
 
-        result = 0
+       seen = set()
+       while n != 1 and n not in seen:
+           seen.add(n)class Solution:
+    def isHappy(self, n: int) -> bool:
 
-        while result != 1:
-            result = 0
-            for i in range(len(number_list)):
-                result += pow(number_list[i], 2)
+       def get_next(n):
+           total_sum = 0
+           while n > 0:
+               #n을 10으로 계속해서 나누어 각 자리수를 분리시켜나감. 나머지 수는 다시 나누어 나감
+               n, digit = divmod(n, 10)
+               total_sum += digit ** 2
+           return total_sum
 
-            if result == 1:
-                return True
+       seen = set()
+       while n != 1 and n not in seen:
+           seen.add(n)
+           n = get_next(n)
 
-            number_list = list(map(int, str(result)))
+       return n == 1
+           n = get_next(n)
 
-
-
-happy = Solution()
-
-happy.isHappy(19)
+       return n == 1
